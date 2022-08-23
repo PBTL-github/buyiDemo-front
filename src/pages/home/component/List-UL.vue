@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { Ref, ref } from "vue";
+import { reactive, Ref, ref } from "vue";
 import ListLI from "./List-LI.vue";
 
-interface ListItemModel {
+export interface ListItemModel {
     ListItem: {
         itemImgUrl: string;
         title: string;
@@ -10,39 +10,46 @@ interface ListItemModel {
     };
 }
 
-const ListItems: Ref<ListItemModel[]> = ref([]);
+const ListItems: ListItemModel[] = reactive<ListItemModel[]>([]);
 
-ListItems.value.push({
+ListItems.push({
     ListItem: {
-        itemImgUrl: "",
+        itemImgUrl:
+            "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg",
+        contentDesc:
+            "asdfasdfasfdasfdaf asdfasfda adsfasfdasdf asdfasfdafa asdfdasfafd asfdasfdasdfa afdasdfasdf asdfasf ",
         title: "asdfadfafdsa",
     },
 });
 
-ListItems.value.push({
+ListItems.push({
     ListItem: {
-        itemImgUrl: "",
+        itemImgUrl:
+            "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg",
         title: "asdfadfafdsa",
     },
 });
 
-ListItems.value.push({
+ListItems.push({
     ListItem: {
-        itemImgUrl: "",
+        itemImgUrl:
+            "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg",
         title: "asdfadfafdsa",
     },
 });
 
-ListItems.value.push({
+ListItems.push({
     ListItem: {
-        itemImgUrl: "",
+        itemImgUrl:
+            "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg",
         title: "asdfadfafdsa",
     },
 });
 
-ListItems.value.push({
+ListItems.push({
     ListItem: {
-        itemImgUrl: "",
+        itemImgUrl:
+            "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg",
         title: "asdfadfafdsa",
     },
 });
@@ -50,8 +57,15 @@ ListItems.value.push({
 
 <template>
     <div class="ListItem-Box">
-        <ListLI></ListLI>
+        <ListLI :ListItems="ListItems"></ListLI>
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.ListItem-Box {
+    width: 50%;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+</style>
