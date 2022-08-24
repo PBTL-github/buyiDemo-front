@@ -59,6 +59,9 @@ const handleClose = (done: any) => {
 .show-pc {
     & {
         display: block;
+        position: fixed;
+        width: 100%;
+        z-index: 99;
     }
 }
 .show-mobile {

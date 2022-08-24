@@ -33,30 +33,38 @@ watch(
 </script>
 
 <template>
-    <el-row>
-        <el-col :span="18" class="bread-list">
-            <el-breadcrumb separator="/">
-                <el-breadcrumb-item
-                    v-for="(item, index) in breadList"
-                    :to="item.path"
-                    :key="index"
-                >
-                    {{ item.meta.title }}
-                </el-breadcrumb-item>
-            </el-breadcrumb>
-        </el-col>
-        <el-col :span="6" class="bread-list">
-            <el-icon> <wind-power /> </el-icon>消息展示
-        </el-col>
-    </el-row>
+    <div class="bread-box">
+        <el-row>
+            <el-col :span="18" class="bread-list">
+                <el-breadcrumb separator="/">
+                    <el-breadcrumb-item
+                        v-for="(item, index) in breadList"
+                        :to="item.path"
+                        :key="index"
+                    >
+                        {{ item.meta.title }}
+                    </el-breadcrumb-item>
+                </el-breadcrumb>
+            </el-col>
+            <el-col :span="6" class="bread-list">
+                <el-icon> <wind-power /> </el-icon>消息展示
+            </el-col>
+        </el-row>
+    </div>
 </template>
 
 <style lang="scss" scoped>
-.bread-list {
+.bread-box {
     & {
-        display: flex;
-        align-items: center;
-        padding: 4px;
+        width: 100%;
+    }
+
+    .bread-list {
+        & {
+            display: flex;
+            align-items: center;
+            padding: 4px;
+        }
     }
 }
 </style>

@@ -36,7 +36,8 @@ author.proDesc = "博客";
 <style lang="scss" scoped>
 .author-box {
     & {
-        width: 49%;
+        width: 100%;
+        height: 326px;
         background-color: white;
         border-radius: 10px;
         padding: 5px;

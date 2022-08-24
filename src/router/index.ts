@@ -63,6 +63,29 @@ const routes: Array<RouteRecordRaw> = [
                     index: "3",
                 },
             },
+            {
+                path: "/article",
+                name: "article",
+                meta: {
+                    title: "文章",
+                    index: "4",
+                },
+                hidden: true,
+                // component: () => import("../pages/article/index.vue"), // 可保留生成文章专属页
+                children: [
+                    {
+                        path: "/article/info",
+                        name: "article-info",
+                        component: () =>
+                            import("../pages/article/info/index.vue"),
+                        meta: {
+                            title: "文章详情",
+                            icon: "",
+                            index: "3-1",
+                        },
+                    },
+                ],
+            },
         ],
     },
     {

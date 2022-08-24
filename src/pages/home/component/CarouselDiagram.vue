@@ -64,8 +64,8 @@ imgList.value.push({
 <style lang="scss" scoped>
 .el-carousel {
     & {
-        width: 50%;
-        min-width: 500px;
+        width: 100%;
+        min-width: 450px;
     }
 
     .el-carousel__item {

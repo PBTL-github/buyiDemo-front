@@ -26,6 +26,8 @@ ListItems.push({
     ListItem: {
         itemImgUrl:
             "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg",
+        contentDesc:
+            "asdfasdfasfdasfdaf asdfasfda adsfasfdasdf asdfasfdafa asdfdasfafd asfdasfdasdfa afdasdfasdf asdfasf ",
         title: "asdfadfafdsa",
     },
 });
@@ -34,6 +36,8 @@ ListItems.push({
     ListItem: {
         itemImgUrl:
             "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg",
+        contentDesc:
+            "asdfasdfasfdasfdaf asdfasfda adsfasfdasdf asdfasfdafa asdfdasfafd asfdasfdasdfa afdasdfasdf asdfasf ",
         title: "asdfadfafdsa",
     },
 });
@@ -42,6 +46,8 @@ ListItems.push({
     ListItem: {
         itemImgUrl:
             "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg",
+        contentDesc:
+            "asdfasdfasfdasfdaf asdfasfda adsfasfdasdf asdfasfdafa asdfdasfafd asfdasfdasdfa afdasdfasdf asdfasf ",
         title: "asdfadfafdsa",
     },
 });
@@ -50,6 +56,18 @@ ListItems.push({
     ListItem: {
         itemImgUrl:
             "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg",
+        contentDesc:
+            "asdfasdfasfdasfdaf asdfasfda adsfasfdasdf asdfasfdafa asdfdasfafd asfdasfdasdfa afdasdfasdf asdfasf ",
+        title: "asdfadfafdsa",
+    },
+});
+
+ListItems.push({
+    ListItem: {
+        itemImgUrl:
+            "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg",
+        contentDesc:
+            "asdfasdfasfdasfdaf asdfasfda adsfasfdasdf asdfasfdafa asdfdasfafd asfdasfdasdfa afdasdfasdf asdfasf ",
         title: "asdfadfafdsa",
     },
 });
@@ -57,15 +75,14 @@ ListItems.push({
 
 <template>
     <div class="ListItem-Box">
+        <!-- 列表组件 -->
         <ListLI :ListItems="ListItems"></ListLI>
     </div>
 </template>
 
 <style lang="scss" scoped>
 .ListItem-Box {
-    width: 50%;
-    background-color: white;
-    padding: 10px;
-    border-radius: 10px;
+    width: 100%;
+    // background-color: white;
 }
 </style>

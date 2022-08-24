@@ -1,53 +1,111 @@
 <script lang="ts" setup>
-import { Ref } from "vue";
-import { ListItemModel } from "./List-UL.vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const props = defineProps({
     ListItems: {
         type: Object,
     },
 });
+
+const handelMore = () => {
+    router.push("/article/info");
+};
 </script>
 
 <template>
     <div v-for="(item, index) in ListItems" :key="index" class="List-item-box">
         <!-- {{ item.ListItem.title }} -->
-        <div
-            class="item-img"
-            :style="{ backgroundImage: `url('${item.ListItem.itemImgUrl}')` }"
-        />
+        <div class="List-item-content-box">
+            <div
+                class="item-img"
+                :style="{
+                    backgroundImage: `url('${item.ListItem.itemImgUrl}')`,
+                }"
+            />
 
-        <div class="item-content">
-            <h3 class="content-title">{{ item.ListItem.title }}</h3>
-            <div class="content-text">{{ item.ListItem.contentDesc }}</div>
+            <div class="item-content">
+                <h3 class="content-title">{{ item.ListItem.title }}</h3>
+                <div class="content-text">{{ item.ListItem.contentDesc }}</div>
+            </div>
         </div>
-        <button>
-            <el-icon><View /></el-icon>阅读全文
-        </button>
+        <div class="author-infermation-box">
+            <div class="item-btn-more" @click="handelMore">
+                <el-icon><View /></el-icon>阅读全文
+            </div>
+        </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
 .List-item-box {
     & {
+        position: relative;
         width: 100%;
-        height: 100px;
+        height: 130px;
+        background-color: white;
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
         justify-content: space-around;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        padding: 10px;
     }
 
-    .item-img {
-        & {
-            width: 20%;
-            height: 80%;
+    &:hover {
+        .content-title {
+            color: rgb(17, 167, 117);
         }
     }
 
-    .item-content {
+    .List-item-content-box {
         & {
-            width: 79%;
-            height: 80%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            height: 70%;
+        }
+
+        .item-img {
+            & {
+                width: 20%;
+                height: 90%;
+                border-radius: 3px;
+            }
+        }
+
+        .item-content {
+            & {
+                width: 79%;
+                height: 80%;
+            }
+        }
+    }
+    .author-infermation-box {
+        & {
+            width: 80%;
+            height: 25%;
+            margin-left: 20%;
+        }
+        .item-btn-more {
+            & {
+                float: right;
+                display: flex;
+                width: 100px;
+                height: 100%;
+                color: white;
+                background-color: rgb(82, 189, 11);
+                border: none;
+                border-radius: 3px;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+
+            &:active {
+                background-color: rgb(71, 150, 18);
+            }
         }
     }
 }

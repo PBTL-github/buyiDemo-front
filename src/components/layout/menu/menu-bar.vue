@@ -23,7 +23,7 @@ withDefaults(defineProps<Props>(), {
 const menuList = router.options.routes[0].children;
 
 const handleSelect = (key: string, keyPath: string[]) => {
-    store.commit("SET_CURRENT_MENU", key);
+    // store.commit("SET_CURRENT_MENU", key);
 };
 
 const handleRoute = (item: any) => {
@@ -51,27 +51,29 @@ const handleRoute = (item: any) => {
             @select="handleSelect"
         >
             <template v-for="(item, index) in menuList" :key="item.path">
-                <template v-if="!item.children">
-                    <el-menu-item
-                        :index="String(item.meta?.index)"
-                        @click="handleRoute(item)"
-                    >
-                        {{ item.meta?.title }}
-                    </el-menu-item>
-                </template>
-
-                <template v-else>
-                    <el-sub-menu :index="String(item.meta?.index)">
-                        <template #title>{{ item.meta?.title }}</template>
+                <template v-if="!item.hidden">
+                    <template v-if="!item.children">
                         <el-menu-item
-                            :index="String(subItem.meta?.index)"
-                            v-for="(subItem, index) in item.children"
-                            :key="subItem.path"
-                            @click="handleRoute(subItem)"
+                            :index="String(item.meta?.index)"
+                            @click="handleRoute(item)"
                         >
-                            {{ subItem.meta?.title }}
+                            {{ item.meta?.title }}
                         </el-menu-item>
-                    </el-sub-menu>
+                    </template>
+
+                    <template v-else>
+                        <el-sub-menu :index="String(item.meta?.index)">
+                            <template #title>{{ item.meta?.title }}</template>
+                            <el-menu-item
+                                :index="String(subItem.meta?.index)"
+                                v-for="(subItem, index) in item.children"
+                                :key="subItem.path"
+                                @click="handleRoute(subItem)"
+                            >
+                                {{ subItem.meta?.title }}
+                            </el-menu-item>
+                        </el-sub-menu>
+                    </template>
                 </template>
             </template>
         </el-menu>
