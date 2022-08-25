@@ -29,6 +29,10 @@ const handleSelect = (key: string, keyPath: string[]) => {
 const handleRoute = (item: any) => {
     router.push(item.path);
 };
+
+const handleDialogFlag = (flag: boolean) => {
+    store.commit("SET_DIALOG_FLAG", flag);
+};
 </script>
 
 <template>
@@ -78,8 +82,8 @@ const handleRoute = (item: any) => {
             </template>
         </el-menu>
         <div class="el-menu el-menu--horizontal combine-btn-box">
-            <span class="child-item">登录</span>
-            <span class="child-item">注册</span>
+            <span class="child-item" @click="handleDialogFlag(true)">登录</span>
+            <span class="child-item" @click="handleDialogFlag(true)">注册</span>
         </div>
     </div>
 </template>
