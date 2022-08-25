@@ -9,15 +9,15 @@ const classify: Ref<string[]> = ref(["vue", "vue"]);
         <!-- 文章主体 -->
         <div class="info-content">
             <div class="content-title">
-                <span class="label">原创</span>
-                <span class="label">
+                <el-tag class="label">原创</el-tag>
+                <el-tag class="label">
                     分类：<span
                         v-for="(item, index) in classify"
                         :key="index"
                         class="label-classify"
                         >{{ item }}
                     </span>
-                </span>
+                </el-tag>
             </div>
             <div class="content-item">
                 习近平总书记指出，让人民生活幸福是“国之大者”。党的十八大以来，以习近平同志为核心的党中央坚持以人民为中心的发展思想，持续夯实民生基础，推动改革发展成果更多、更公平惠及全体人民。
@@ -48,6 +48,7 @@ const classify: Ref<string[]> = ref(["vue", "vue"]);
 
     .info-content {
         & {
+            min-height: 400px;
             background-color: white;
             padding: 10px;
             margin-bottom: 10px;
@@ -63,15 +64,8 @@ const classify: Ref<string[]> = ref(["vue", "vue"]);
 
             .label {
                 & {
-                    position: relative;
-                    left: 0;
-                    color: rgb(11, 122, 196);
-                    background-color: aqua;
-                    margin-right: 20px;
-                    border-radius: 3px;
-                    padding: 5px;
+                    margin-right: 5px;
                 }
-
                 .label-classify {
                     & {
                         margin-right: 5px;

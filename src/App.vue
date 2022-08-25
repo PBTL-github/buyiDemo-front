@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import MenuBar from "./components/layout/menu/menu-bar.vue";
 import HeaDer from "./components/layout/header/index.vue";
+import MessageBox from "./components/user-login-register/index.vue";
 </script>
 
 <template>
@@ -8,6 +8,7 @@ import HeaDer from "./components/layout/header/index.vue";
         <menu-bar></menu-bar>
     </nav> -->
     <hea-der></hea-der>
+    <MessageBox></MessageBox>
     <router-view />
 </template>
 
