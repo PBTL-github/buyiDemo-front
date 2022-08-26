@@ -6,6 +6,7 @@ import * as Api from "../../utils/serve/apis/index";
 const store = useStore();
 
 const dialogFormVisible = ref(false);
+const LoginTitle = ref("登入");
 const formLabelWidth = "100px";
 
 const formData = reactive({
@@ -21,23 +22,34 @@ const handleDialogFlag = (flag: boolean) => {
 watch(
     () => store.state.dialogFormFlag,
     () => {
-        console.log("被调用");
         dialogFormVisible.value = store.getters.getDialogFormFlag;
     }
 );
 
 const submitBtn = () => {
-    Api.userLogin.userControl(formData.basic, "login").then((res) => {
-        alert(res.data.message);
-    });
+    if (LoginTitle.value == "登入") {
+        Api.userLogin.userControl(formData.basic, "login").then((res) => {
+            alert(res.data.message);
+        });
+    } else if (LoginTitle.value == "注册") {
+        Api.userLogin.userControl(formData.basic, "register").then((res) => {
+            alert(res.data.message);
+        });
+    }
     handleDialogFlag(false);
 };
+watch(
+    () => store.state.LoginTitle,
+    () => {
+        LoginTitle.value = store.getters.getLoginTitle;
+    }
+);
 </script>
 
 <template>
     <el-dialog
         v-model="dialogFormVisible"
-        title="登陆"
+        :title="LoginTitle"
         width="480px"
         center
         @close="handleDialogFlag(false)"

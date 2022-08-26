@@ -30,11 +30,9 @@ const handleRoute = (item: any) => {
     router.push(item.path);
 };
 
-const handleDialogFlag = (flag: boolean) => {
-    // store.commit("SET_DIALOG_FLAG", false);
-    // setTimeout(() => {
+const handleDialogFlag = (flag: boolean, model: string) => {
     store.commit("SET_DIALOG_FLAG", flag);
-    // }, 1);
+    store.commit("SET_LOGIN_TITLE", model);
 };
 </script>
 
@@ -85,8 +83,12 @@ const handleDialogFlag = (flag: boolean) => {
             </template>
         </el-menu>
         <div class="el-menu el-menu--horizontal combine-btn-box">
-            <span class="child-item" @click="handleDialogFlag(true)">登录</span>
-            <span class="child-item" @click="handleDialogFlag(true)">注册</span>
+            <span class="child-item" @click="handleDialogFlag(true, '登入')"
+                >登录</span
+            >
+            <span class="child-item" @click="handleDialogFlag(true, '注册')"
+                >注册</span
+            >
         </div>
     </div>
 </template>

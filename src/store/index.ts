@@ -4,6 +4,7 @@ export default createStore({
     state: {
         currnMenu: localStorage.getItem("currnMenu") || "1",
         dialogFormFlag: false,
+        LoginTitle: "",
     },
     getters: {
         getCurrentMenu: (state) => {
@@ -11,6 +12,9 @@ export default createStore({
         },
         getDialogFormFlag: (state) => {
             return state.dialogFormFlag;
+        },
+        getLoginTitle: (state) => {
+            return state.LoginTitle;
         },
     },
     mutations: {
@@ -20,6 +24,9 @@ export default createStore({
         },
         SET_DIALOG_FLAG(state, flag: boolean) {
             state.dialogFormFlag = flag;
+        },
+        SET_LOGIN_TITLE(state, model: string) {
+            state.LoginTitle = model;
         },
     },
     actions: {},
