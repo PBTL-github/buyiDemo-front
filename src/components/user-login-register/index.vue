@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useStore } from "vuex";
 import { reactive, ref, watch } from "vue";
+import * as Api from "../../utils/serve/apis/index";
 
 const store = useStore();
 
@@ -8,20 +9,29 @@ const dialogVisible = ref(false);
 const formLabelWidth = "100px";
 
 const formData = reactive({
-    username: "",
-    password: "",
+    basic: {
+        username: "",
+        password: "",
+    },
 });
 
 const handleDialogFlag = (flag: boolean) => {
     store.commit("SET_DIALOG_FLAG", flag);
 };
-
 watch(
     () => store.state.dialogFormFlag,
     () => {
+        console.log("被调用");
         dialogVisible.value = store.getters.getDialogFormFlag;
     }
 );
+
+const submitBtn = () => {
+    Api.userLogin.userControl(formData.basic, "login").then((res) => {
+        alert(res.data.message);
+    });
+    handleDialogFlag(false);
+};
 </script>
 
 <template>
@@ -36,23 +46,21 @@ watch(
             <el-form-item label="用户名：" :label-width="formLabelWidth">
                 <el-input
                     type="text"
-                    v-model="formData.username"
+                    v-model="formData.basic.username"
                     autocomplete="off"
                 />
             </el-form-item>
             <el-form-item label="密　码：" :label-width="formLabelWidth">
                 <el-input
                     type="text"
-                    v-model="formData.password"
+                    v-model="formData.basic.password"
                     autocomplete="off"
                 />
             </el-form-item>
         </el-form>
         <template #footer>
             <span class="dialog-footer">
-                <el-button type="primary" @click="handleDialogFlag(false)"
-                    >确定</el-button
-                >
+                <el-button type="primary" @click="submitBtn">确定</el-button>
                 <el-button @click="handleDialogFlag(false)">取消</el-button>
             </span>
         </template>

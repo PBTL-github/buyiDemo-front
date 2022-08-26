@@ -31,7 +31,10 @@ const handleRoute = (item: any) => {
 };
 
 const handleDialogFlag = (flag: boolean) => {
-    store.commit("SET_DIALOG_FLAG", flag);
+    store.commit("SET_DIALOG_FLAG", false);
+    setTimeout(() => {
+        store.commit("SET_DIALOG_FLAG", flag);
+    }, 1);
 };
 </script>
 

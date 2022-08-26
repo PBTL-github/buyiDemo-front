@@ -7,9 +7,11 @@ const server = axios.create({
 //请求拦截器
 server.interceptors.request.use(
     (config) => {
+        console.log(config);
         return config;
     },
     (error) => {
+        console.log(error);
         return Promise.reject(error);
     }
 );
