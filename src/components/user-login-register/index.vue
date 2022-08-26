@@ -5,7 +5,7 @@ import * as Api from "../../utils/serve/apis/index";
 
 const store = useStore();
 
-const dialogVisible = ref(false);
+const dialogFormVisible = ref(false);
 const formLabelWidth = "100px";
 
 const formData = reactive({
@@ -22,7 +22,7 @@ watch(
     () => store.state.dialogFormFlag,
     () => {
         console.log("被调用");
-        dialogVisible.value = store.getters.getDialogFormFlag;
+        dialogFormVisible.value = store.getters.getDialogFormFlag;
     }
 );
 
@@ -36,13 +36,13 @@ const submitBtn = () => {
 
 <template>
     <el-dialog
-        v-model="dialogVisible"
+        v-model="dialogFormVisible"
         title="登陆"
         width="480px"
         center
-        :show-close="false"
+        @close="handleDialogFlag(false)"
     >
-        <el-form>
+        <el-form :model="formData.basic">
             <el-form-item label="用户名：" :label-width="formLabelWidth">
                 <el-input
                     type="text"
