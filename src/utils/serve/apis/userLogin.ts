@@ -17,10 +17,12 @@ export const userControl = (
   });
 };
 
-export const tokenControl = (token: string) => {
+export const checkToken = (token: string) => {
   return server.request({
     method: "post",
-    url: "/api/user/login",
-    data: token,
+    url: "/api/allowToken",
+    data: {
+      token: token,
+    },
   });
 };
