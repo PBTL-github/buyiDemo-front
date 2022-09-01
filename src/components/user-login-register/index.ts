@@ -1,19 +1,21 @@
-import { Ref, ref } from "vue";
+import { useStore } from "vuex";
 
-class UserLoginRegister {
-    public dialogVisible: Ref<boolean> = ref(false);
+const store = useStore();
 
-    public handleDialogFlag = (flag: boolean): void => {
-        this.dialogVisible.value = flag;
-    };
-
-    public getDialogVisible = () => {
-        console.log(this.dialogVisible.value);
-
-        return this.dialogVisible.value;
-    };
+export interface FormDataModel {
+  basic: {
+    username: string;
+    password: string;
+  };
 }
 
-const userLoginRegister = new UserLoginRegister();
-
-export default userLoginRegister;
+const userReg = /^[a-zA-Z0-9]{5,16}$/;
+const pawReg = /^[a-zA-Z0-9]{8,16}$/;
+export const check = (Data: FormDataModel) => {
+  if (userReg.test(Data.basic.username) && pawReg.test(Data.basic.password)) {
+    return true;
+  } else {
+    alert("用户名或密码格式错误");
+    return false;
+  }
+};

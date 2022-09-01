@@ -1,15 +1,16 @@
 <script lang="ts" setup>
 import { useStore } from "vuex";
 import { reactive, ref, watch } from "vue";
+import { FormDataModel, check } from "./index";
 import * as Api from "../../utils/serve/apis/index";
 
 const store = useStore();
 
-const dialogFormVisible = ref(false);
+const dialogFormVisible = ref(false); //验证窗口是否显示
 const LoginTitle = ref("登入");
 const formLabelWidth = "100px";
 
-const formData = reactive({
+const formData: FormDataModel = reactive({
   basic: {
     username: "",
     password: "",
@@ -27,16 +28,26 @@ watch(
 );
 
 const submitBtn = () => {
-  if (LoginTitle.value == "登入") {
-    Api.userLogin.userControl(formData.basic, "login").then((res) => {
-      alert(res.data.message);
-    });
-  } else if (LoginTitle.value == "注册") {
-    Api.userLogin.userControl(formData.basic, "register").then((res) => {
-      alert(res.data.message);
-    });
+  // 校验格式
+  if (check(formData)) {
+    //基础验证
+    if (LoginTitle.value == "登入") {
+      // checkToken(formData);
+      Api.userLogin.userControl(formData.basic, "login").then((res) => {
+        alert(res.data.message);
+        store.commit("SET_ITEM_LOCALSTORAGE", res.data.token);
+      });
+    } else if (LoginTitle.value == "注册") {
+      Api.userLogin.userControl(formData.basic, "register").then((res) => {
+        alert(res.data.message);
+      });
+    }
+
+    // token验证
+    handleDialogFlag(false);
   }
-  handleDialogFlag(false);
+  formData.basic.username = "";
+  formData.basic.password = "";
 };
 watch(
   () => store.state.LoginTitle,

@@ -7,12 +7,20 @@ import { server } from "../request";
  * @returns 返回server请求
  */
 export const userControl = (
-    data: { username: string; password: string },
-    model: "register" | "login"
+  data: { username: string; password: string },
+  model: "register" | "login"
 ) => {
-    return server.request({
-        method: "post",
-        url: `/api/user/${model}`,
-        data,
-    });
+  return server.request({
+    method: "post",
+    url: `/api/user/${model}`,
+    data,
+  });
+};
+
+export const tokenControl = (token: string) => {
+  return server.request({
+    method: "post",
+    url: "/api/user/login",
+    data: token,
+  });
 };
