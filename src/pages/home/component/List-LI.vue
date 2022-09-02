@@ -1,7 +1,10 @@
 <script lang="ts" setup>
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+import * as Api from "../../../utils/serve/apis/index";
 
 const router = useRouter();
+const store = useStore();
 
 const props = defineProps({
   ListItems: {
@@ -11,23 +14,31 @@ const props = defineProps({
 
 const handelMore = () => {
   router.push("/article/info");
+  if (localStorage.getItem("token")) {
+    const token = localStorage.getItem("token");
+    Api.userLogin.checkToken(String(token)).then((res) => {
+      if (res.data.token) {
+        store.commit("SET_ARTICLE_LIST_ITEM", props.ListItems?.ListItem);
+      }
+    });
+  }
 };
 </script>
 
 <template>
-  <div v-for="(item, index) in ListItems" :key="index" class="List-item-box">
+  <div class="List-item-box">
     <!-- {{ item.ListItem.title }} -->
     <div class="List-item-content-box">
       <div
         class="item-img"
         :style="{
-          backgroundImage: `url('${item.ListItem.itemImgUrl}')`,
+          backgroundImage: `url('${ListItems?.ListItem.itemImgUrl}')`,
         }"
       />
 
       <div class="item-content">
-        <h3 class="content-title">{{ item.ListItem.title }}</h3>
-        <div class="content-text">{{ item.ListItem.contentDesc }}</div>
+        <h3 class="content-title">{{ ListItems?.ListItem.title }}</h3>
+        <div class="content-text">{{ ListItems?.ListItem.contentDesc }}</div>
       </div>
     </div>
     <div class="author-infermation-box">
@@ -47,8 +58,7 @@ const handelMore = () => {
     background-color: white;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    margin-bottom: 20px;
+    justify-content: space-between;
     border-radius: 5px;
     padding: 10px;
   }
@@ -63,7 +73,7 @@ const handelMore = () => {
     & {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-around;
+      justify-content: space-between;
       height: 70%;
     }
 
@@ -77,13 +87,17 @@ const handelMore = () => {
 
     .item-content {
       & {
-        width: 75%;
+        width: 78%;
         height: 80%;
       }
 
       .content-text {
         & {
+          width: 100%;
+          height: 90%;
+          overflow: hidden;
           text-align: left;
+          line-height: 28px;
         }
       }
     }

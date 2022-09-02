@@ -7,6 +7,14 @@ export default createStore({
     LoginTitle: "",
 
     token: localStorage.getItem("token") || undefined,
+
+    articleListItem: {
+      itemImgUrl:
+        "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg",
+      contentDesc:
+        "asdfasdfasfdasfdaf asdfasfda adsfasfdasdf asdfasfdafa asdfdasfafd asfdasfdasdfa afdasdfasdf asdfasf ",
+      title: "asdfadfafdsa",
+    },
   },
   getters: {
     getCurrentMenu: (state) => {
@@ -20,6 +28,9 @@ export default createStore({
     },
     getToken: (state) => {
       return state.token;
+    },
+    getArticleItem: (state) => {
+      return state.articleListItem;
     },
   },
   mutations: {
@@ -36,6 +47,10 @@ export default createStore({
     SET_ITEM_LOCALSTORAGE(state, token: string) {
       localStorage.setItem("token", token);
       state.token = token;
+    },
+    SET_ARTICLE_LIST_ITEM(state, listItem: any) {
+      console.log(state.articleListItem);
+      state.articleListItem = listItem;
     },
   },
   actions: {},

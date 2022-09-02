@@ -75,7 +75,7 @@ watch(
       </el-form-item>
       <el-form-item label="密　码：" :label-width="formLabelWidth">
         <el-input
-          type="text"
+          type="password"
           v-model="formData.basic.password"
           autocomplete="off"
         />
