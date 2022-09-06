@@ -1,11 +1,10 @@
 <script lang="ts" setup>
-import { Ref, ref, watch } from "vue";
-import { useRouter, useRoute } from "vue-router";
-import { useStore } from "vuex";
+import { ref, watch } from "vue";
+import { useRouter } from "vue-router";
+import store from "../../../store";
+import { exitLogin } from "../../index";
 
 const router = useRouter();
-const route = useRoute();
-const store = useStore();
 const loginState = ref(localStorage.getItem("token"));
 
 interface Props {
@@ -38,12 +37,6 @@ watch(
     loginState.value = localStorage.getItem("token");
   }
 );
-
-// 退出登录
-const exitLogin = () => {
-  localStorage.removeItem("token");
-  store.state.token = undefined;
-};
 </script>
 
 <template>

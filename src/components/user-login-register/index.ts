@@ -1,6 +1,4 @@
-import { useStore } from "vuex";
-
-const store = useStore();
+import store from "../../store";
 
 export interface FormDataModel {
   basic: {

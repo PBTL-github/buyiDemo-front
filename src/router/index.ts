@@ -1,5 +1,5 @@
-import { nextTick } from "process";
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import { exitLogin } from "../components/index";
 import Unfind from "../pages/404/index.vue";
 import * as Api from "../utils/serve/apis/index";
 
@@ -82,7 +82,7 @@ const routes: Array<RouteRecordRaw> = [
               icon: "",
               index: "3-1",
             },
-            beforeEnter: async (to, from) => {
+            beforeEnter: async () => {
               switch (localStorage.getItem("token")) {
                 case null:
                   alert("请进行登录");
@@ -91,12 +91,15 @@ const routes: Array<RouteRecordRaw> = [
 
                 default:
                   const token = localStorage.getItem("token");
-                  await Api.userLogin.checkToken(String(token)).then((res) => {
-                    if (!res.data.token) {
-                      alert("token出现问题");
-                      router.push("/home");
-                    }
-                  });
+                  await Api.userLogin
+                    .checkToken(String(token))
+                    .then(async (res) => {
+                      if (!res.data.isValid) {
+                        alert("token出现问题");
+                        router.push("/home");
+                        exitLogin();
+                      }
+                    });
                   break;
               }
             },
