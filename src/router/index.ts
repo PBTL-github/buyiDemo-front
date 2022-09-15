@@ -56,7 +56,8 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "/about",
         name: "about",
-        component: () => import("../pages/about/index.vue"),
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../pages/about/index.vue"),
         meta: {
           title: "关于",
           icon: "",
