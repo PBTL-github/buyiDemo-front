@@ -1,4 +1,5 @@
-import store from "../../store";
+import { AxiosResponse } from "axios";
+import { ElMessage } from "element-plus";
 
 export interface FormDataModel {
   basic: {
@@ -16,4 +17,11 @@ export const check = (Data: FormDataModel) => {
     alert("用户名或密码格式错误");
     return false;
   }
+};
+
+// 用户操作返回提示
+export const axiosMessage = (res: AxiosResponse<any, any>) => {
+  if (res.data.code !== 200) {
+    ElMessage.error(res.data.message);
+  } else ElMessage({ message: res.data.message, type: "success" });
 };

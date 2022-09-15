@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useStore } from "vuex";
 import { reactive, ref, watch } from "vue";
-import { FormDataModel, check } from "./index";
+import { FormDataModel, check, axiosMessage } from "./index";
 import * as Api from "../../utils/serve/apis/index";
 
 const store = useStore();
@@ -34,12 +34,12 @@ const submitBtn = () => {
     if (LoginTitle.value == "登入") {
       // checkToken(formData);
       Api.userLogin.userControl(formData.basic, "login").then((res) => {
-        alert(res.data.message);
+        axiosMessage(res);
         store.commit("SET_ITEM_LOCALSTORAGE", res.data.token);
       });
     } else if (LoginTitle.value == "注册") {
       Api.userLogin.userControl(formData.basic, "register").then((res) => {
-        alert(res.data.message);
+        axiosMessage(res);
       });
     }
 

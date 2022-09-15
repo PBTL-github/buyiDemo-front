@@ -2232,6 +2232,11 @@ vite@^3.0.7:
   optionalDependencies:
     fsevents "~2.3.2"
 
+voice-core@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.npmmirror.com/voice-core/-/voice-core-0.4.0.tgz#60d79597add9ce4250794e005ec9daedd3be1dab"
+  integrity sha512-NyudFWmrVTm9dBdLWXJ2moYCm3qTfyRliuTjafLoNVIUtGktjHDUGnEWSVPqqTyeVLpoLizHFDHNsKTY+dk2rA==
+
 vue-demi@*:
   version "0.13.8"
   resolved "https://registry.npmmirror.com/vue-demi/-/vue-demi-0.13.8.tgz#5c568fb3b4d8f848acc658dfccd3d875035b5653"
