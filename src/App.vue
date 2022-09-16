@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import HeaDer from "./components/layout/header/index.vue";
 import MessageBox from "./components/user-login-register/index.vue";
-import LazyLoad from "./components/lazyLoad/index.vue";
+import Jump from "./components/lazyLoad/Jumping.vue";
 import { Ref, ref, watch } from "vue";
 import router from "./router";
 
@@ -29,7 +29,8 @@ router.beforeEach(() => {
 router.afterEach(() => {
   setTimeout(() => {
     isLoadIn.value = false;
-  }, 0);
+    window.scrollY = 0;
+  }, 1000);
 });
 
 watch(isLoadIn, (n: boolean) => {
@@ -42,7 +43,7 @@ watch(isLoadIn, (n: boolean) => {
 <template>
   <hea-der></hea-der>
   <MessageBox></MessageBox>
-  <lazy-load v-if="isLoadIn"></lazy-load>
+  <Jump v-if="isLoadIn"></Jump>
   <router-view />
 </template>
 

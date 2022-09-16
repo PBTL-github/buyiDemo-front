@@ -26,6 +26,7 @@ declare module '@vue/runtime-core' {
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElTag: typeof import('element-plus/es')['ElTag']
     Header: typeof import('./src/components/layout/header/index.vue')['default']
+    Jumping: typeof import('./src/components/lazyLoad/Jumping.vue')['default']
     Layout: typeof import('./src/components/layout/index.vue')['default']
     LazyLoad: typeof import('./src/components/lazyLoad/index.vue')['default']
     MenuBar: typeof import('./src/components/layout/menu/menu-bar.vue')['default']
